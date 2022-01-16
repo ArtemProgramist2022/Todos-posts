@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { } from 'react';
+import { connect, Provider } from "react-redux";
+import TodoListContainer from './components/TodoList';
+import store from './redux/redux';
+import { getPosts, addPost } from './reducer/post-reducer'
+import { Route, Routes } from 'react-router-dom';
+import FullPost from './components/FullPost';
+import './style/App.css'
 
-function App() {
+function App(props) {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Routes>
+          <Route exact path='/' element={<TodoListContainer
+            getPosts={props.getPosts}
+            addPost={props.addPost}
+            getPhoto={props.getPhoto}
+            />}/>
+
+          <Route path='/:id' element={<FullPost todos={props.todos} />}/>
+        </Routes>
     </div>
   );
 }
 
-export default App;
+let mapStateToProps = (state) => ({
+  todos: state.todos.items,
+})
+
+const AppContainer = connect(mapStateToProps, {
+  getPosts, addPost
+})(App)
+
+
+let MainApp = (props) => {
+  return <Provider store={store} >
+    <AppContainer state={store.getState()} />
+  </Provider>
+}
+
+export default MainApp;
