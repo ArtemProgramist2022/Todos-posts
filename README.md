@@ -1,6 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Todos-posts
+Hello! It's my one of the first progect. I study to interact to the server here. It's done in the React and Redux. You can click on the button 'Get posts' and will appear posts uploaded from the server. You can delete one of them either show posts (the button 'Show' or photo of the post) with same id or show comments. Also u can change title/body of the post to own. If you want to add your post, you should to click on the button 'Add post'.
 
 ## Available Scripts
 
